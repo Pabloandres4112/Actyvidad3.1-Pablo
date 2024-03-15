@@ -1,6 +1,8 @@
 import { pool } from "../database/conexion.js";
 import  Jwt  from "jsonwebtoken";
 
+//nn
+
 export const validar = async (req, res) => {
 
     try {
@@ -20,6 +22,7 @@ export const validar = async (req, res) => {
     }
     
 }
+//verificar
 
 export const validarToken = async (req, res, next) => {
 

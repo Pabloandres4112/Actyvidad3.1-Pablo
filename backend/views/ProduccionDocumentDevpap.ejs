@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Documentación de la API</title>
+    <link rel="stylesheet" href="/public/style.css">
+</head>
+<body>
+    <h1>Documentación de la Api Produccion</h1>
+
+    <h3>Listar Producción</h3>
+
+    <table>
+        <tr>
+            <td>Número</td>
+            <td>1</td>
+        </tr>
+        <tr>
+            <td>Nombre del Servicio</td>
+            <td>Listar Producción</td>
+        </tr>
+        <tr>
+            <td>URL</td>
+            <td>/listarProduccion</td>
+        </tr>
+        <tr>
+            <td>Descripción</td>
+            <td>Obtiene una lista de registros de producción</td>
+        </tr>
+        <tr>
+            <td>Método HTTP</td>
+            <td>GET</td>
+        </tr>
+        <tr>
+            <td>Header</td>
+            <td>Null</td>
+        </tr>
+        <tr>
+            <td>Respuesta JSON</td>
+            <td>
+                Correcto:
+                Status: 200
+                JSON:
+                {"status": 200,"json": [{"id_produccion": 1,"cantidad_produccion": 1500,"precio": 2.5,"fk_variedad_cultivo": 1},{"id_produccion": 2,"cantidad_produccion": 800,"precio": 3.0,"fk_variedad_cultivo": 2},]}
+                <br>
+                Incorrecto:
+                Status: 400
+                JSON:
+                {"status": 400,"message": "No hay ningún registro de producción."}
+                <br>
+                Error en el servidor:
+                Status: 500
+                JSON:
+                {"status": 500,"message": "Error en el servidor."}
+            </td>
+        </tr>
+    </table>
+
+    <h3>Requerimiento 2. Documentación ENDPOINT Registrar Producción</h3>
+
+    <table>
+        <tr>
+            <td>Número</td>
+            <td>3</td>
+        </tr>
+        <tr>
+            <td>Nombre del Servicio</td>
+            <td>Registrar Producción</td>
+        </tr>
+        <tr>
+            <td>URL</td>
+            <td>/registrarProduccion</td>
+        </tr>
+        <tr>
+            <td>Descripción</td>
+            <td>Registra una nueva producción en la base de datos</td>
+        </tr>
+        <tr>
+            <td>Método HTTP</td>
+            <td>POST</td>
+        </tr>
+        <tr>
+            <td>Header</td>
+            <td>Content-Type: application/json</td>
+        </tr>
+        <tr>
+            <td>Request JSON</td>
+            <td>{"id_produccion": 3,"cantidad_produccion": 1600,"precio": 2.5,"fk_variedad_cultivo": 8}</td>
+        </tr>
+        <tr>
+            <td>Respuesta JSON</td>
+            <td>
+                Correcto:
+                Status: 200
+                JSON:
+                {"status": 200,"message": "Se registró la producción correctamente"}
+                <br>
+                Incorrecto:
+                Status: 400
+                JSON:
+                {"status": 400,"message": "Faltan campos requeridos en la solicitud"}
+                <br>
+                Error en el servidor:
+                Status: 500
+                JSON:
+                {"status": 500,"message": "Error en el servidor"}
+            </td>
+        </tr>
+    </table>
+
+    <h3>Requerimiento 3: Buscar Producción por Variedad de Cultivo</h3>
+
+    <table>
+        <tr>
+            <td>Número</td>
+            <td>2</td>
+        </tr>
+        <tr>
+            <td>Nombre del Servicio</td>
+            <td>Buscar Producción</td>
+        </tr>
+        <tr>
+            <td>URL</td>
+            <td>/BuscarProduccion</td>
+        </tr>
+        <tr>
+            <td>Descripción</td>
+            <td>Permite buscar registros de producción por variedad de cultivo</td>
+        </tr>
+        <tr>
+            <td>Método HTTP</td>
+            <td>POST</td>
+        </tr>
+        <tr>
+            <td>Header</td>
+            <td>Content-Type: application/json</td>
+        </tr>
+        <tr>
+            <td>Request JSON</td>
+            <td>{"fk_variedad_cultivo": "Tipo de Variedad"}</td>
+        </tr>
+        <tr>
+            <td>Respuesta JSON</td>
+            <td>
+                Éxito:
+                Status: 200
+                JSON:
+                {"status": 200,"data": ["id_produccion": 3,"cantidad_produccion": 1600,"precio": 2.5,"fk_variedad_cultivo": 8]}
+                <br>
+                Sin Resultados:
+                Status: 404
+                JSON:
+                {"status": 404,"message": "No se encontraron resultados para la variedad de cultivo proporcionada"}
+                <br>
+                Error en el Servidor:
+                Status: 500
+                JSON:
+                {"status": 500,"message": "Error en el servidor"}
+            </td>
+        </tr>
+    </table>
+
+    <h3>Actualizar Producción</h3>
+
+    <table>
+        <tr>
+            <td>Número</td>
+            <td>2</td>
+        </tr>
+        <tr>
+            <td>Nombre del Servicio</td>
+            <td>Actualizar Producción</td>
+        </tr>
+        <tr>
+            <td>URL</td>
+            <td>/actualizarProduccion/:id_produccion</td>
+        </tr>
+        <tr>
+            <td>Descripción</td>
+            <td>Permite actualizar una producción existente en la base de datos</td>
+        </tr>
+        <tr>
+            <td>Método HTTP</td>
+            <td>PUT</td>
+        </tr>
+        <tr>
+            <td>Header</td>
+            <td>Content-Type: application/json</td>
+        </tr>
+        <tr>
+            <td>Parámetros de Ruta</td>
+            <td>{"id_produccion": "ID de la producción a actualizar"}</td>
+        </tr>
+        <tr>
+            <td>Request JSON</td>
+            <td>{ "cantidad_produccion": 150, "precio": 15.75, "fk_variedad_cultivo": "Nueva Variedad"}</td>
+        </tr>
+        <tr>
+            <td>Respuesta JSON</td>
+            <td>
+                Correcto:
+                Status: 200
+                JSON:
+                {"status": 200,"message": "Se actualizó la producción con éxito"}
+                <br>
+                Incorrecto:
+                Status: 400
+                JSON:
+                {"status": 400,"message": "No se pudo actualizar la producción. [Mensaje de error específico]"}
+                <br>
+                Error en el servidor:
+                Status: 500
+                JSON:
+                {"status": 500,"message": "Error en el servidor"}
+            </td>
+        </tr>
+    </table>
+</body>
+
+</html>

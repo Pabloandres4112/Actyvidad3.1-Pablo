@@ -6,3 +6,4 @@ const rutaValidacion = Router()
 rutaValidacion.post('/validacion', validar)
 
 export default rutaValidacion
+
